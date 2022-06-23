@@ -1,0 +1,81 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@tweenjs/tween.js": "^18.6.4",
+    "accelerometer": "^1.2.0",
+    "babel-eslint": "^10.0.1",
+    "bootstrap": "^4.4.1",
+    "eslint": "^5.12.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "geotiff": "^1.0.0-beta.6",
+    "node-pre-gyp": "^0.14.0",
+    "ol": "^6.4.3",
+    "prettier": "^1.19.1",
+    "rc-tree": "^3.1.1",
+    "react": "^16.12.0",
+    "react-color": "^2.18.0",
+    "react-dom": "^16.12.0",
+    "react-dropzone": "^10.2.2",
+    "react-joystick-component": "^4.0.1",
+    "react-modal": "^3.11.1",
+    "react-qr-reader": "^2.2.1",
+    "react-redux": "^7.2.0",
+    "react-responsive-carousel": "^3.1.56",
+    "react-scripts": "^3.3.0",
+    "react-split": "^2.0.9",
+    "react-split-pane": "^0.1.89",
+    "react-webcam": "^5.2.0",
+    "reactstrap": "^8.2.0",
+    "read-excel-file": "^4.0.6",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "three": "^0.125.2",
+    "three-buffer-geometry-utils": "^1.0.0",
+    "three-instanced-group-mesh": "^1.0.1",
+    "xlsx": "^0.15.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "architecture": "depcruise --include-only \"^(src)\" --output-type dot src | dot -T svg > dependencygraph.svg"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "dependency-cruiser": "^11.2.1",
+    "eslint-plugin-react": "^7.28.0"
+  }
+}
