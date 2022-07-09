@@ -5,14 +5,18 @@ export default {
   content: [
     {
       type: "virtual",
-      ground: true,
-      selectable: false,
-      //visible: false,
+      ground: false,
+      selectable: true,
       url: process.env.PUBLIC_URL + "/light-switch.glb",
-      position: [0, 1.5, 0],
-      rotation: [Math.PI / 2, 0, 0],
+      position: [0, 0.01, -1],
+      rotation: [0, Math.PI, 0],
       scale: [1, 1, 1],
-      description: ``,
+      description: `<iframe
+      style="
+        width: 100%;
+        height: 100%;
+        border:none;"
+      src="${process.env.PUBLIC_URL}/templates/switch.html"></iframe>`,
     },
   ],
   meta: {
@@ -29,9 +33,9 @@ export default {
         position: {
           x: 0,
           y: 0,
-          z: 1.6,
+          z: 0,
         },
-        heading: 230,
+        heading: 0,
       },
     ],
   },

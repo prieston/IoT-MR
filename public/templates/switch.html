@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .description-container {
+        flex: 1;
+      }
+      * {
+        font-family: Arial;
+      }
+      .action-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+      }
+      .action-item {
+        cursor: pointer;
+        margin: 0px 20px 20px 0px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        background: #323228;
+        color: white;
+        border-radius: 100%;
+        padding: 30px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .action-item:hover {
+        box-shadow: 0px 0px 6px 0px black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="action-container">
+      <div id="lighton" class="action-item">Light On</div>
+      <div id="lightoff" class="action-item">Light Off</div>
+    </div>
+    <div id="descriptionContainer" class="description-container"></div>
+    <script type="text/javascript">
+      lighton.onclick = () => {
+        console.log("light on");
+        const {hueBridgeIP, username, lightID} = window.parent;
+        fetch(`http://${hueBridgeIP}/api/${username}/lights/${lightID}`,{
+          method::"PUT",
+          body:{on:true,hue:27000,sat:150,bri:150}
+        }).then(data=>console.log("ON"))
+      };
+      lightoff.onclick = () => {
+        console.log("light off");
+        const {hueBridgeIP, username, lightID} = window.parent;
+        fetch(`http://${hueBridgeIP}/api/${username}/lights/${lightID}`,{
+          method::"PUT",
+          body:{on:false,hue:27000,sat:150,bri:150}
+        }).then(data=>console.log("OFF"))
+      };
+    </script>
+  </body>
+</html>

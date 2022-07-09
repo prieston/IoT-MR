@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project Abstract
 
-## Available Scripts
+As Mixed Reality applications are penetrating people’s daily activities, strong
+synergies with Geospatial technologies and the Internet of Things are revealed. The
+first is due to the significance of the spatial reference of all involved actors of a Mixed
+Reality environment: the end-user, the real and the virtual objects. The second is due
+to the ever-increasing participation of sensors controlling devices and machines
+always and everywhere. This project attempts to highlight these synergies and propose
+a case proving that they crucially empower a Mixed Reality experience.
 
-In the project directory, you can run:
+# Use case
 
-### `npm start`
+This application proposal demonstrates the scenario of altering a state of the real world by interacting with virtual objects. In our case, the user can select a virtual light switch and turn or or off the light of a philips hue smart light bulb.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Fork and Use
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+In order to use and run this project you can fork it, and change the variables
 
-### `npm test`
+- hueBridgeIP
+- username
+- lightID
+  at the src/config.js file
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Demo
 
-### `npm run build`
+https://prieston.github.io/IoT-MR/
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Presentation
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Step 1
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Go to https://prieston.github.io/IoT-MR/
 
-### `npm run eject`
+## Step 2
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Click on the Test World card
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Step 3
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Click on the plus icon and then click the MR Icon
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Step 4
 
-## Learn More
+Click on the plus icon and then click the QRScan Icon, type 1 and then submit
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Step 5
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Select the virtual switch
 
-### Code Splitting
+## Step 6
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Select either "lights on" or "lights off"

@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 import api from "./api";
 import worldDataTest from "../testFiles/worldTest.js";
+import { hueBridgeIP, username, lightID } from "../config";
+
 const startWorld = {
   id: "0",
   name: "Start World",
@@ -16,6 +18,9 @@ const startWorld = {
 };
 
 window.iotmr = {
+  hueBridgeIP,
+  username,
+  lightID,
   modelLayer: [],
   vectors: [],
   plane: {},
