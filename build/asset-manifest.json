@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.cdb08601.chunk.css",
-    "main.js": "/static/js/main.e2d5adce.chunk.js",
-    "main.js.map": "/static/js/main.e2d5adce.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.83c3e0c4.js",
-    "runtime-main.js.map": "/static/js/runtime-main.83c3e0c4.js.map",
-    "static/css/2.6414bb7b.chunk.css": "/static/css/2.6414bb7b.chunk.css",
-    "static/js/2.35c0b05e.chunk.js": "/static/js/2.35c0b05e.chunk.js",
-    "static/js/2.35c0b05e.chunk.js.map": "/static/js/2.35c0b05e.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.e48f30400def33afe742249cbd0f2f67.js": "/precache-manifest.e48f30400def33afe742249cbd0f2f67.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.6414bb7b.chunk.css.map": "/static/css/2.6414bb7b.chunk.css.map",
-    "static/css/main.cdb08601.chunk.css.map": "/static/css/main.cdb08601.chunk.css.map",
-    "static/js/2.35c0b05e.chunk.js.LICENSE.txt": "/static/js/2.35c0b05e.chunk.js.LICENSE.txt"
+    "main.css": "/IoT-MR/static/css/main.cdb08601.chunk.css",
+    "main.js": "/IoT-MR/static/js/main.ee127649.chunk.js",
+    "main.js.map": "/IoT-MR/static/js/main.ee127649.chunk.js.map",
+    "runtime-main.js": "/IoT-MR/static/js/runtime-main.b264b874.js",
+    "runtime-main.js.map": "/IoT-MR/static/js/runtime-main.b264b874.js.map",
+    "static/css/2.6414bb7b.chunk.css": "/IoT-MR/static/css/2.6414bb7b.chunk.css",
+    "static/js/2.35c0b05e.chunk.js": "/IoT-MR/static/js/2.35c0b05e.chunk.js",
+    "static/js/2.35c0b05e.chunk.js.map": "/IoT-MR/static/js/2.35c0b05e.chunk.js.map",
+    "index.html": "/IoT-MR/index.html",
+    "precache-manifest.cb8ba4ef5c660c99ebec9f0f634fae44.js": "/IoT-MR/precache-manifest.cb8ba4ef5c660c99ebec9f0f634fae44.js",
+    "service-worker.js": "/IoT-MR/service-worker.js",
+    "static/css/2.6414bb7b.chunk.css.map": "/IoT-MR/static/css/2.6414bb7b.chunk.css.map",
+    "static/css/main.cdb08601.chunk.css.map": "/IoT-MR/static/css/main.cdb08601.chunk.css.map",
+    "static/js/2.35c0b05e.chunk.js.LICENSE.txt": "/IoT-MR/static/js/2.35c0b05e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.83c3e0c4.js",
+    "static/js/runtime-main.b264b874.js",
     "static/css/2.6414bb7b.chunk.css",
     "static/js/2.35c0b05e.chunk.js",
     "static/css/main.cdb08601.chunk.css",
-    "static/js/main.e2d5adce.chunk.js"
+    "static/js/main.ee127649.chunk.js"
   ]
 }
