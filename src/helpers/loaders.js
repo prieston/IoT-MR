@@ -11,7 +11,7 @@ export const loadGLTFModel = (file, record, referenceIndex) => {
     blending,
   } = record;
   const { url } = file[0];
-  const { scene, loaders } = window.mergin_mode;
+  const { scene, loaders } = window.iotmr;
 
   const loader = new loaders.GLTFLoader();
   const dracoLoader = new DRACOLoader();
@@ -57,7 +57,7 @@ export const loadGLTFModel = (file, record, referenceIndex) => {
             transform.scale.set(sca.x, sca.y, sca.z);
             transform.position.set(
               ...position[p].reduce(
-                (a, b, i) => [...a, b - window.mergin_mode.center[i]],
+                (a, b, i) => [...a, b - window.iotmr.center[i]],
                 []
               )
             );
@@ -71,7 +71,7 @@ export const loadGLTFModel = (file, record, referenceIndex) => {
           group.add(gltf.scene);
           group.position.set(
             ...position.reduce(
-              (a, b, i) => [...a, b - window.mergin_mode.center[i]],
+              (a, b, i) => [...a, b - window.iotmr.center[i]],
               []
             )
           );
@@ -104,7 +104,7 @@ export const loadFBXModel = (file, record, referenceIndex) => {
     blending,
   } = record;
   const { url } = file[0];
-  const { scene, loaders } = window.mergin_mode;
+  const { scene, loaders } = window.iotmr;
   const loader = new loaders.FBXLoader();
   return new Promise((resolve, reject) => {
     loader.load(
@@ -145,7 +145,7 @@ export const loadFBXModel = (file, record, referenceIndex) => {
             transform.scale.set(sca.x, sca.y, sca.z);
             transform.position.set(
               ...position[p].reduce(
-                (a, b, i) => [...a, b - window.mergin_mode.center[i]],
+                (a, b, i) => [...a, b - window.iotmr.center[i]],
                 []
               )
             );
@@ -159,7 +159,7 @@ export const loadFBXModel = (file, record, referenceIndex) => {
           group.add(object);
           group.position.set(
             ...position.reduce(
-              (a, b, i) => [...a, b - window.mergin_mode.center[i]],
+              (a, b, i) => [...a, b - window.iotmr.center[i]],
               []
             )
           );

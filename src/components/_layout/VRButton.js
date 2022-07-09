@@ -29,7 +29,7 @@ const VRButton = {
       }
 
       function onSessionEnded(/*event*/) {
-        window.mergin_mode.realities.virtual();
+        window.iotmr.realities.virtual();
         currentSession.removeEventListener("end", onSessionEnded);
 
         button.textContent = "ENTER VR";

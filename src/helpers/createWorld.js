@@ -114,7 +114,7 @@ export default function createWorld(
     1000
   );
   camera.setFocalLength = 26;
-  window.mergin_mode.realities = {
+  window.iotmr.realities = {
     virtual: () => {
       renderer.setClearColor("#4285f4", 1);
       //remove mixed objects
@@ -156,7 +156,7 @@ export default function createWorld(
       // }
     },
   };
-  window.mergin_mode.realities.virtual();
+  window.iotmr.realities.virtual();
   // camera.up.set(0, 0, 1);
   if (mobileCheck()) {
     controls = new DeviceOrientationControls(camera);
@@ -248,15 +248,12 @@ export default function createWorld(
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   const getParentElement = (object) => {
-    if (
-      !object ||
-      !window.mergin_mode.world[window.mergin_mode.currentWorldId]
-    ) {
+    if (!object || !window.iotmr.world[window.iotmr.currentWorldId]) {
       return false;
     }
-    const allIds = window.mergin_mode.world[
-      window.mergin_mode.currentWorldId
-    ].map((obj) => obj.id);
+    const allIds = window.iotmr.world[window.iotmr.currentWorldId].map(
+      (obj) => obj.id
+    );
     if (allIds.indexOf(object.uuid) !== -1) {
       return object;
     }
@@ -266,19 +263,19 @@ export default function createWorld(
 
   function onMouseClick(event) {
     try {
-      if (window.mergin_mode.listeners.mouseMoved) return true;
-      if (window.mergin_mode.selected.object) {
-        scene.remove(window.mergin_mode.selected.objectHelper);
-        // window.mergin_mode.selected.object.traverse(child => {
+      if (window.iotmr.listeners.mouseMoved) return true;
+      if (window.iotmr.selected.object) {
+        scene.remove(window.iotmr.selected.objectHelper);
+        // window.iotmr.selected.object.traverse(child => {
         //   if (child.isMesh) {
         //     child.material.color.setHex(
-        //       window.mergin_mode.selected.material[child.uuid]
+        //       window.iotmr.selected.material[child.uuid]
         //     );
-        //     // child.material = window.mergin_mode.selected.material[child.uuid];
+        //     // child.material = window.iotmr.selected.material[child.uuid];
         //   }
         // });
-        window.mergin_mode.selected.object = null;
-        window.mergin_mode.selected.material = null;
+        window.iotmr.selected.object = null;
+        window.iotmr.selected.material = null;
       }
       const rect = renderer.domElement.getBoundingClientRect();
       mouse.x =
@@ -300,8 +297,8 @@ export default function createWorld(
         obj = getParentElement(record?.object);
         if (obj) {
           //check if obj is selectable
-          const referenceObj = window.mergin_mode.world[
-            window.mergin_mode.currentWorldId
+          const referenceObj = window.iotmr.world[
+            window.iotmr.currentWorldId
           ].filter((model) => model.id == obj.uuid)[0];
           if (referenceObj.selectable !== false) {
             break;
@@ -316,22 +313,22 @@ export default function createWorld(
         color: "#b34f0b",
         side: THREE.DoubleSide,
       });
-      window.mergin_mode.selected.object = obj;
-      window.mergin_mode.selected.objectHelper = new THREE.BoxHelper(obj);
-      window.mergin_mode.selected.objectHelper.material.color.set(0xffffff);
-      scene.add(window.mergin_mode.selected.objectHelper);
+      window.iotmr.selected.object = obj;
+      window.iotmr.selected.objectHelper = new THREE.BoxHelper(obj);
+      window.iotmr.selected.objectHelper.material.color.set(0xffffff);
+      scene.add(window.iotmr.selected.objectHelper);
       // obj.traverse(child => {
       //   if (child.isMesh) {
-      //     window.mergin_mode.selected.material[
+      //     window.iotmr.selected.material[
       //       child.uuid
       //     ] = child.material.color.getHex();
       //     child.material.color.setHex(0xff0000);
       //   }
       // });
-      scene.add(window.mergin_mode.selected.objectHelper);
-      const model = window.mergin_mode.world[
-        window.mergin_mode.currentWorldId
-      ].filter((model) => model.id == obj.uuid)[0];
+      scene.add(window.iotmr.selected.objectHelper);
+      const model = window.iotmr.world[window.iotmr.currentWorldId].filter(
+        (model) => model.id == obj.uuid
+      )[0];
       const runtimeInfo = model.selectedRuntimeInfo;
       if (runtimeInfo) {
         runtimeInfo.animationIndex = 0;
@@ -383,65 +380,61 @@ export default function createWorld(
     TWEEN.update();
     // }
     renderer.render(scene, camera);
-    if (!window.mergin_mode.world[window.mergin_mode.currentWorldId]) {
+    if (!window.iotmr.world[window.iotmr.currentWorldId]) {
       return true;
     }
     const delta = clock.getDelta();
-    window.mergin_mode.world[window.mergin_mode.currentWorldId].forEach(
-      (worldModel) => {
-        if (worldModel.actions) {
-          const runtimeInfo =
-            window.mergin_mode.selected.object?.uuid == worldModel.id
-              ? worldModel.selectedRuntimeInfo
-              : worldModel.runtimeInfo;
-          if (runtimeInfo) {
-            runtimeInfo.mixer.update(delta);
-          }
+    window.iotmr.world[window.iotmr.currentWorldId].forEach((worldModel) => {
+      if (worldModel.actions) {
+        const runtimeInfo =
+          window.iotmr.selected.object?.uuid == worldModel.id
+            ? worldModel.selectedRuntimeInfo
+            : worldModel.runtimeInfo;
+        if (runtimeInfo) {
+          runtimeInfo.mixer.update(delta);
         }
       }
-    );
-    window.mergin_mode.world[window.mergin_mode.currentWorldId].forEach(
-      (model) => {
-        if (
-          model.runtimeInfo &&
-          model.actions?.onLoad?.animations &&
-          model.object
-        ) {
-          const transormation = CalculateTransformation(delta, model);
-          if (transormation) {
-            if (transormation.position) {
-              model.object.position.set(...transormation.position);
-            }
-            if (transormation.rotation) {
-              //smooth rotation
-              if (
-                Math.abs(transormation.rotation[1] - model.object.rotation.y) >
-                  Math.PI / 2 ||
-                model.smoothRotation == false
-              ) {
-                model.object.rotation.set(...transormation.rotation);
-              } else {
-                new TWEEN.Tween(model.object.rotation)
-                  .to(
-                    {
-                      x: transormation.rotation[0],
-                      y: transormation.rotation[1],
-                      z: transormation.rotation[2],
-                    },
-                    100
-                  )
-                  .easing(TWEEN.Easing.Quadratic.InOut)
-                  .start();
-              }
+    });
+    window.iotmr.world[window.iotmr.currentWorldId].forEach((model) => {
+      if (
+        model.runtimeInfo &&
+        model.actions?.onLoad?.animations &&
+        model.object
+      ) {
+        const transormation = CalculateTransformation(delta, model);
+        if (transormation) {
+          if (transormation.position) {
+            model.object.position.set(...transormation.position);
+          }
+          if (transormation.rotation) {
+            //smooth rotation
+            if (
+              Math.abs(transormation.rotation[1] - model.object.rotation.y) >
+                Math.PI / 2 ||
+              model.smoothRotation == false
+            ) {
+              model.object.rotation.set(...transormation.rotation);
+            } else {
+              new TWEEN.Tween(model.object.rotation)
+                .to(
+                  {
+                    x: transormation.rotation[0],
+                    y: transormation.rotation[1],
+                    z: transormation.rotation[2],
+                  },
+                  100
+                )
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .start();
             }
           }
         }
       }
-    );
-    if (window.mergin_mode.selected.object) {
-      window.mergin_mode.selected.objectHelper.update();
-      // window.mergin_mode.selected.objectHelper.position.set(
-      //   window.mergin_mode.selected.object.position
+    });
+    if (window.iotmr.selected.object) {
+      window.iotmr.selected.objectHelper.update();
+      // window.iotmr.selected.objectHelper.position.set(
+      //   window.iotmr.selected.object.position
       // );
     }
   }
@@ -451,14 +444,14 @@ export default function createWorld(
 
   // document.getElementById("three-map").addEventListener("mousedown", () => {
   //   const onMove = () => {
-  //     window.mergin_mode.listeners.mouseMoved = true;
+  //     window.iotmr.listeners.mouseMoved = true;
   //   };
 
   //   const onUp = e => {
-  //     if (!window.mergin_mode.listeners.mouseMoved) {
+  //     if (!window.iotmr.listeners.mouseMoved) {
   //       onMouseClick(e);
   //     }
-  //     window.mergin_mode.listeners.mouseMoved = false;
+  //     window.iotmr.listeners.mouseMoved = false;
   //     document.getElementById("three-map").removeEventListener("mouseup", onUp);
   //     document
   //       .getElementById("three-map")
@@ -502,9 +495,9 @@ export default function createWorld(
   //   window.positions = window.positions || [];
   //   if (!intersects[0]) return;
   //   window.positions.push([
-  //     (window.mergin_mode.center[0] + intersects[0].point.x).toFixed(2) - 0,
-  //     (window.mergin_mode.center[1] + intersects[0].point.y).toFixed(2) - 0,
-  //     (window.mergin_mode.center[2] + intersects[0].point.z).toFixed(2) - 0
+  //     (window.iotmr.center[0] + intersects[0].point.x).toFixed(2) - 0,
+  //     (window.iotmr.center[1] + intersects[0].point.y).toFixed(2) - 0,
+  //     (window.iotmr.center[2] + intersects[0].point.z).toFixed(2) - 0
   //   ]);
   // });
   return {

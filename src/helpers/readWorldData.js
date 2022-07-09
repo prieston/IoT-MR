@@ -20,17 +20,17 @@ export default async (worldId) => {
       .trim();
   }
   const readWorldData = (world) => {
-    window.mergin_mode.center = world.meta.coordinates;
+    window.iotmr.center = world.meta.coordinates;
 
     const data = world.content;
     //initialize interactions
-    const { renderer, scene, camera } = window.mergin_mode;
+    const { renderer, scene, camera } = window.iotmr;
 
     const loadings = [];
-    if (window.mergin_mode.world[world.id]) {
+    if (window.iotmr.world[world.id]) {
       return true;
     }
-    window.mergin_mode.world[world.id] = [];
+    window.iotmr.world[world.id] = [];
     for (const [index, record] of data.entries()) {
       if (["virtual", "mapped"].indexOf(record.type) !== -1) {
         loadings.push(
@@ -40,26 +40,26 @@ export default async (worldId) => {
             index
           )
         );
-        window.mergin_mode.world[world.id].push(record);
+        window.iotmr.world[world.id].push(record);
       }
     }
     return Promise.all(loadings)
       .then((models) => {
         models.forEach((model) => {
-          window.mergin_mode.world[window.mergin_mode.currentWorldId][
+          window.iotmr.world[window.iotmr.currentWorldId][
             model.referenceIndex
           ].id = model.uuid;
-          window.mergin_mode.world[window.mergin_mode.currentWorldId][
+          window.iotmr.world[window.iotmr.currentWorldId][
             model.referenceIndex
           ].object = model.object;
-          window.mergin_mode.scene.add(model.object);
-          // if (window.mergin_mode.world[model.referenceIndex].visible == false) {
+          window.iotmr.scene.add(model.object);
+          // if (window.iotmr.world[model.referenceIndex].visible == false) {
           //   model.object.visible = false;
           // }
           model.object.traverse((child) => {
             if (child.isMesh) {
               if (
-                window.mergin_mode.world[window.mergin_mode.currentWorldId][
+                window.iotmr.world[window.iotmr.currentWorldId][
                   model.referenceIndex
                 ].visible === false
               ) {
@@ -70,12 +70,12 @@ export default async (worldId) => {
 
               child.material.flatShading = false;
               child.geometry.computeVertexNormals();
-              // child.material = window.mergin_mode.selected.material[child.uuid];
+              // child.material = window.iotmr.selected.material[child.uuid];
             }
           });
           //check for animations and create the mixers
           const actions =
-            window.mergin_mode.world[window.mergin_mode.currentWorldId][
+            window.iotmr.world[window.iotmr.currentWorldId][
               model.referenceIndex
             ].actions || {};
 
@@ -83,8 +83,8 @@ export default async (worldId) => {
             const anim = actions.onLoad.animations[0];
             const startAt = anim.startAt || 0;
             const mixer = new THREE.AnimationMixer(model.object);
-            const theAnimation = window.mergin_mode.world[
-              window.mergin_mode.currentWorldId
+            const theAnimation = window.iotmr.world[
+              window.iotmr.currentWorldId
             ][model.referenceIndex].object.children[0].animations.filter(
               (animation) => {
                 return animation.name === anim.name;
@@ -97,7 +97,7 @@ export default async (worldId) => {
                 .play();
             }, startAt);
 
-            window.mergin_mode.world[window.mergin_mode.currentWorldId][
+            window.iotmr.world[window.iotmr.currentWorldId][
               model.referenceIndex
             ].runtimeInfo = {
               animationIndex: 0,
@@ -109,8 +109,8 @@ export default async (worldId) => {
           }
           if ((actions.onSelect || {}).animations) {
             const mixer = new THREE.AnimationMixer(model.object);
-            const theAnimation = window.mergin_mode.world[
-              window.mergin_mode.currentWorldId
+            const theAnimation = window.iotmr.world[
+              window.iotmr.currentWorldId
             ][model.referenceIndex].object.children[0].animations.filter(
               (animation) => {
                 return animation.name === actions.onSelect.animations[0].name;
@@ -123,7 +123,7 @@ export default async (worldId) => {
                   1000
               )
               .play();
-            window.mergin_mode.world[window.mergin_mode.currentWorldId][
+            window.iotmr.world[window.iotmr.currentWorldId][
               model.referenceIndex
             ].selectedRuntimeInfo = {
               animationIndex: 0,
@@ -139,5 +139,5 @@ export default async (worldId) => {
         console.error(e);
       });
   };
-  readWorldData(window.mergin_mode.worlds.filter((w) => w.id === worldId)[0]);
+  readWorldData(window.iotmr.worlds.filter((w) => w.id === worldId)[0]);
 };

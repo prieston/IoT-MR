@@ -11,45 +11,41 @@ export default function QRModal(props) {
     //case scan data
     if (data) {
       const d = JSON.parse(data);
-      const w = window.mergin_mode.worlds.filter((w) => w.id == d.id)[0];
+      const w = window.iotmr.worlds.filter((w) => w.id == d.id)[0];
       //case the world matches
       if (w) {
         if (
-          window.mergin_mode.currentWorldId &&
-          w.id !== window.mergin_mode.currentWorldId
+          window.iotmr.currentWorldId &&
+          w.id !== window.iotmr.currentWorldId
         ) {
-          window.mergin_mode.world[window.mergin_mode.currentWorldId].map(
-            (o) => {
-              if (o.object) {
-                o.object.visible = false;
-              }
+          window.iotmr.world[window.iotmr.currentWorldId].map((o) => {
+            if (o.object) {
+              o.object.visible = false;
             }
-          );
+          });
         }
-        window.mergin_mode.currentWorldId = w.id;
-        window.mergin_mode.center = w.meta.coordinates;
-        if (window.mergin_mode.world.hasOwnProperty(w.id)) {
-          window.mergin_mode.world[window.mergin_mode.currentWorldId].map(
-            (o) => {
-              if (o.object) {
-                o.object.visible = true;
-              }
+        window.iotmr.currentWorldId = w.id;
+        window.iotmr.center = w.meta.coordinates;
+        if (window.iotmr.world.hasOwnProperty(w.id)) {
+          window.iotmr.world[window.iotmr.currentWorldId].map((o) => {
+            if (o.object) {
+              o.object.visible = true;
             }
-          );
+          });
         } else {
           (async function() {
             await readWorldData(w.id);
           })();
         }
-        window.mergin_mode.scene.position.set(
-          window.mergin_mode.center[0] - d.position.x,
-          window.mergin_mode.center[1] - d.position.z,
-          window.mergin_mode.center[2] - d.position.y
+        window.iotmr.scene.position.set(
+          window.iotmr.center[0] - d.position.x,
+          window.iotmr.center[1] - d.position.z,
+          window.iotmr.center[2] - d.position.y
         );
 
         const dir = new THREE.Vector3();
         const sph = new THREE.Spherical();
-        window.mergin_mode.camera.getWorldDirection(dir);
+        window.iotmr.camera.getWorldDirection(dir);
 
         sph.setFromVector3(dir);
         let heading = (360 - THREE.Math.radToDeg(sph.theta) - 180).toFixed(0);
@@ -59,13 +55,13 @@ export default function QRModal(props) {
 
         if (
           heading != d.heading &&
-          typeof window.mergin_mode.controls.alphaOffset !== "undefined"
+          typeof window.iotmr.controls.alphaOffset !== "undefined"
         ) {
-          window.mergin_mode.controls.alphaOffset -= Number(
+          window.iotmr.controls.alphaOffset -= Number(
             (((d.heading - heading) * Math.PI) / 180).toFixed(4)
           );
         }
-        window.mergin_mode.controls.update();
+        window.iotmr.controls.update();
         props.onClose();
       }
     }
@@ -127,8 +123,8 @@ export default function QRModal(props) {
               }}
               onClick={() => {
                 const observationId = state.observationId;
-                const data = (window.mergin_mode.worlds?.filter(
-                  (w) => w.id == window.mergin_mode.currentWorldId
+                const data = (window.iotmr.worlds?.filter(
+                  (w) => w.id == window.iotmr.currentWorldId
                 ) || [])[0].meta.observationPoints.filter((op) => {
                   return op.pointId == observationId;
                 });

@@ -55,26 +55,22 @@ const Controls = (props) => {
   };
 
   const worldActions =
-    window.mergin_mode.currentWorldId !== 0 &&
-    window.mergin_mode.worlds.filter(
-      (world) => window.mergin_mode.currentWorldId === world.id
+    window.iotmr.currentWorldId !== 0 &&
+    window.iotmr.worlds.filter(
+      (world) => window.iotmr.currentWorldId === world.id
     )[0]?.actions;
   React.useEffect(() => {
     if (state.geolocation) {
       let id, target, options;
 
       function success(position) {
-        if (!window.mergin_mode.camera.position) return false;
+        if (!window.iotmr.camera.position) return false;
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         const newPos = fromLonLat([latitude, longitude, 0]);
-        const cameraX = Number(
-          (newPos[0] - window.mergin_mode.center[0]).toFixed(4)
-        );
-        const cameraZ = Number(window.mergin_mode.camera.position.y.toFixed(4));
-        const cameraY = Number(
-          (newPos[1] - window.mergin_mode.center[2]).toFixed(4)
-        );
+        const cameraX = Number((newPos[0] - window.iotmr.center[0]).toFixed(4));
+        const cameraZ = Number(window.iotmr.camera.position.y.toFixed(4));
+        const cameraY = Number((newPos[1] - window.iotmr.center[2]).toFixed(4));
         if (Math.abs(cameraX) > 1000 || Math.abs(cameraY) > 1000) {
           const distance = Math.sqrt(
             Math.pow(cameraX, 2) + Math.pow(cameraY, 2)
@@ -88,7 +84,7 @@ const Controls = (props) => {
           navigator.geolocation.clearWatch(id);
           return true;
         }
-        window.mergin_mode.camera.position.set(cameraX, cameraZ, cameraY);
+        window.iotmr.camera.position.set(cameraX, cameraZ, cameraY);
       }
 
       function error(err) {
@@ -110,23 +106,23 @@ const Controls = (props) => {
     }
   }, [state.geolocation]);
   React.useEffect(() => {
-    // if (typeof window.mergin_mode.controls.alphaOffset !== "undefined") {
-    //   window.mergin_mode.controls.alphaOffset = -Math.PI / 2;
+    // if (typeof window.iotmr.controls.alphaOffset !== "undefined") {
+    //   window.iotmr.controls.alphaOffset = -Math.PI / 2;
     // }
 
     setInterval(() => {
-      if (!window.mergin_mode.camera.position) return false;
-      const { x, y, z } = window.mergin_mode.camera.position;
+      if (!window.iotmr.camera.position) return false;
+      const { x, y, z } = window.iotmr.camera.position;
       const dir = new THREE.Vector3();
       const sph = new THREE.Spherical();
-      window.mergin_mode.camera.getWorldDirection(dir);
+      window.iotmr.camera.getWorldDirection(dir);
 
       sph.setFromVector3(dir);
       let heading = (360 - THREE.Math.radToDeg(sph.theta) - 180).toFixed(0);
       if (heading == 360) {
         heading = 0;
       }
-      const [cx, cy, cz] = window.mergin_mode.center;
+      const [cx, cy, cz] = window.iotmr.center;
       setInfoState({
         position: {
           x: (cx + x).toFixed(2) + "m",
@@ -142,7 +138,7 @@ const Controls = (props) => {
   const moveInterval = useRef();
   const handleMove = (data) => {
     if (locomotionMode == "Adjust") {
-      window.mergin_mode.controls.alphaOffset -= (0.001 * data.x) / 50;
+      window.iotmr.controls.alphaOffset -= (0.001 * data.x) / 50;
     } else {
       if (move.current !== "FORWARDS" && data.y > 0) {
         move.current = "FORWARDS";
@@ -161,8 +157,8 @@ const Controls = (props) => {
     }
   };
   function eventOrLoopOrSomething(speed) {
-    window.mergin_mode.camera.getWorldDirection(direction);
-    window.mergin_mode.camera.position.addScaledVector(direction, speed);
+    window.iotmr.camera.getWorldDirection(direction);
+    window.iotmr.camera.position.addScaledVector(direction, speed);
   }
   const handleStop = () => {
     clearInterval(moveInterval.current);
@@ -180,13 +176,6 @@ const Controls = (props) => {
 
   return (
     <div id="controls">
-      <img
-        id="logo"
-        width={120}
-        height={(120 * 469) / 640}
-        src={process.env.PUBLIC_URL + "/logo-transparent.png"}
-      />
-
       <div id="actions-menu">
         <ActionButton
           actions={[
@@ -238,7 +227,7 @@ const Controls = (props) => {
                 <span
                   onClick={() => {
                     props.setRenderVideo(false);
-                    window.mergin_mode.realities.virtual();
+                    window.iotmr.realities.virtual();
                   }}
                 >
                   VR
@@ -251,7 +240,7 @@ const Controls = (props) => {
                 <span
                   onClick={() => {
                     props.setRenderVideo(true);
-                    window.mergin_mode.realities.mixed();
+                    window.iotmr.realities.mixed();
                   }}
                 >
                   MR
@@ -264,7 +253,7 @@ const Controls = (props) => {
                 <span
                   onClick={() => {
                     props.setRenderVideo(false);
-                    window.mergin_mode.realities.virtual();
+                    window.iotmr.realities.virtual();
                   }}
                   id="vrh"
                 >
@@ -286,7 +275,7 @@ const Controls = (props) => {
                   }
                   onClick={() => {
                     props.setRenderVideo(false);
-                    window.mergin_mode.realities.mixedMRH();
+                    window.iotmr.realities.mixedMRH();
                   }}
                   id="mrh"
                 >
@@ -398,7 +387,7 @@ const Controls = (props) => {
               <Box
                 style={boxStyle}
                 onClick={() => {
-                  window.mergin_mode.controls.alphaOffset += 0.1;
+                  window.iotmr.controls.alphaOffset += 0.1;
                 }}
               >
                 <ArrowForwardIcon />
@@ -419,7 +408,7 @@ const Controls = (props) => {
               </div>
             </div>
             <div id="available-worlds">
-              <WorldItem item={window.mergin_mode.worlds} />
+              <WorldItem item={window.iotmr.worlds} />
             </div>
           </React.Fragment>
         )}

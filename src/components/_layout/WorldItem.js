@@ -6,7 +6,7 @@ export default function WorldItem(props) {
   const [state, setState] = React.useState({ selectedId: null });
   return (
     <React.Fragment>
-      {props.item.map(w => {
+      {props.item.map((w) => {
         if (w.id == 0) {
           return <React.Fragment key={w.id} />;
         }
@@ -18,32 +18,28 @@ export default function WorldItem(props) {
               border:
                 w.id === state.selectedId
                   ? "1px solid #b34f0b"
-                  : "1px solid #fff"
+                  : "1px solid #fff",
             }}
             onClick={() => {
               setState({ selectedId: w.id });
               if (
-                window.mergin_mode.currentWorldId &&
-                w.id !== window.mergin_mode.currentWorldId
+                window.iotmr.currentWorldId &&
+                w.id !== window.iotmr.currentWorldId
               ) {
-                window.mergin_mode.world[window.mergin_mode.currentWorldId].map(
-                  o => {
-                    if (o.object) {
-                      o.object.visible = false;
-                    }
+                window.iotmr.world[window.iotmr.currentWorldId].map((o) => {
+                  if (o.object) {
+                    o.object.visible = false;
                   }
-                );
+                });
               }
-              window.mergin_mode.currentWorldId = w.id;
-              window.mergin_mode.center = w.meta.coordinates;
-              if (window.mergin_mode.world.hasOwnProperty(w.id)) {
-                window.mergin_mode.world[window.mergin_mode.currentWorldId].map(
-                  o => {
-                    if (o.object) {
-                      o.object.visible = true;
-                    }
+              window.iotmr.currentWorldId = w.id;
+              window.iotmr.center = w.meta.coordinates;
+              if (window.iotmr.world.hasOwnProperty(w.id)) {
+                window.iotmr.world[window.iotmr.currentWorldId].map((o) => {
+                  if (o.object) {
+                    o.object.visible = true;
                   }
-                );
+                });
               } else {
                 (async function() {
                   await readWorldData(w.id);

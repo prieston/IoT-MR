@@ -44,7 +44,7 @@ const World = (props) => {
       pointer,
       partials,
       loaders,
-    } = window.mergin_mode;
+    } = window.iotmr;
     const rendererContainer = document.getElementById("three-map");
     const newWorld = createWorld(
       camera,
@@ -58,7 +58,7 @@ const World = (props) => {
       mixers,
       (uuid) => {
         const descriptiveData = uuid
-          ? window.mergin_mode.world[window.mergin_mode.currentWorldId].filter(
+          ? window.iotmr.world[window.iotmr.currentWorldId].filter(
               (o) => o.id == uuid
             )[0].description
           : null;
@@ -75,7 +75,7 @@ const World = (props) => {
         props.setDescriptiveData(descriptiveData);
       }
     );
-    window.mergin_mode = { ...window.mergin_mode, ...newWorld };
+    window.iotmr = { ...window.iotmr, ...newWorld };
   }, []);
 
   return (
