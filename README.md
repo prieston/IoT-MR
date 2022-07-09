@@ -50,3 +50,7 @@ Select the virtual switch
 ## Step 6
 
 Select either "lights on" or "lights off"
+
+# Screenshot
+![Screenshot](https://prieston.github.io/IoT-MR/screenshot.png)
+
