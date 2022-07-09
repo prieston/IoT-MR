@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/IoT-MR/static/css/main.cdb08601.chunk.css",
-    "main.js": "/IoT-MR/static/js/main.ee127649.chunk.js",
-    "main.js.map": "/IoT-MR/static/js/main.ee127649.chunk.js.map",
+    "main.js": "/IoT-MR/static/js/main.18357049.chunk.js",
+    "main.js.map": "/IoT-MR/static/js/main.18357049.chunk.js.map",
     "runtime-main.js": "/IoT-MR/static/js/runtime-main.b264b874.js",
     "runtime-main.js.map": "/IoT-MR/static/js/runtime-main.b264b874.js.map",
     "static/css/2.6414bb7b.chunk.css": "/IoT-MR/static/css/2.6414bb7b.chunk.css",
     "static/js/2.35c0b05e.chunk.js": "/IoT-MR/static/js/2.35c0b05e.chunk.js",
     "static/js/2.35c0b05e.chunk.js.map": "/IoT-MR/static/js/2.35c0b05e.chunk.js.map",
     "index.html": "/IoT-MR/index.html",
-    "precache-manifest.cb8ba4ef5c660c99ebec9f0f634fae44.js": "/IoT-MR/precache-manifest.cb8ba4ef5c660c99ebec9f0f634fae44.js",
+    "precache-manifest.92dfec43de5902d22d4aa72859b748ab.js": "/IoT-MR/precache-manifest.92dfec43de5902d22d4aa72859b748ab.js",
     "service-worker.js": "/IoT-MR/service-worker.js",
     "static/css/2.6414bb7b.chunk.css.map": "/IoT-MR/static/css/2.6414bb7b.chunk.css.map",
     "static/css/main.cdb08601.chunk.css.map": "/IoT-MR/static/css/main.cdb08601.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.6414bb7b.chunk.css",
     "static/js/2.35c0b05e.chunk.js",
     "static/css/main.cdb08601.chunk.css",
-    "static/js/main.ee127649.chunk.js"
+    "static/js/main.18357049.chunk.js"
   ]
 }
