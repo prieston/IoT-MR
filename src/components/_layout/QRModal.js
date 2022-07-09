@@ -91,7 +91,7 @@ export default function QRModal(props) {
           QR Code Scanner
         </h2>
       </div>
-      <p id="simple-modal-description" style={{ flex: 1 }}>
+      <div id="simple-modal-description" style={{ flex: 1 }}>
         <div style={{ height: "calc(100% - 110px)", position: "relative" }}>
           <div className="scan-tip">
             <QrReader
@@ -152,7 +152,7 @@ export default function QRModal(props) {
             Close
           </Button>
         </div>
-      </p>
+      </div>
     </React.Fragment>
   );
 }
