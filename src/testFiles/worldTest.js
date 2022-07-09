@@ -1,6 +1,6 @@
 export default {
   id: "006cb9aE-S32A",
-  name: "Test World",
+  name: "World IoT",
   description: "",
   content: [
     {
@@ -21,8 +21,10 @@ export default {
   ],
   meta: {
     authors: [
-      { firstName: "Konstantinos", lastName: "Evanggelidis" },
       { firstName: "Theofilos", lastName: "Papadopoulos" },
+      { firstName: "Konstantinos", lastName: "Evanggelidis" },
+      { firstName: "Georgios", lastName: "Evanggelidis" },
+      { firstName: "Theodoros", lastName: "Kaskalis" },
     ],
     thumbnail: `${process.env.PUBLIC_URL}/worldThree-Thumbnail.png`,
     coordinates: [0, 0, 0],
