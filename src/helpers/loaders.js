@@ -9,6 +9,7 @@ export const loadGLTFModel = (file, record, referenceIndex) => {
     scaleDifferenceXY,
     scaleDifferenceZ,
     blending,
+    side,
   } = record;
   const { url } = file[0];
   const { scene, loaders } = window.iotmr;
@@ -25,7 +26,11 @@ export const loadGLTFModel = (file, record, referenceIndex) => {
 
         gltf.scene.traverse((child) => {
           if (child.isMesh) {
-            child.material.side = THREE.DoubleSide;
+            if (child.name === "walls") {
+              child.material.side = THREE.BackSide;
+            } else {
+              child.material.side = THREE.DoubleSide;
+            }
             child.material.needsUpdate = true;
             child.frustumCulled = false;
           }

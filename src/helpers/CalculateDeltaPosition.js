@@ -36,7 +36,6 @@ export const CalculateTransformation = (timeDelta, model) => {
       model.rotation[2]
     );
   }
-
   const currentAnimation = action.animations[runtimeInfo.animationIndex];
 
   runtimeInfo.duration += timeDelta;
@@ -61,7 +60,10 @@ export const CalculateTransformation = (timeDelta, model) => {
               );
             })[0]
           )
-          .setDuration((currentAnimation.singleLoopDuration || 1000) / 1000)
+          .setDuration(
+            (action.animations[runtimeInfo.animationIndex].singleLoopDuration ||
+              1000) / 1000
+          )
           .play();
       }
       // restart animation
@@ -70,6 +72,7 @@ export const CalculateTransformation = (timeDelta, model) => {
         runtimeInfo.pathIndex = 0;
         const mixer = runtimeInfo.mixer;
         mixer.stopAllAction();
+
         mixer
           .clipAction(
             model.object.children[0].animations.filter((animation) => {
@@ -79,7 +82,10 @@ export const CalculateTransformation = (timeDelta, model) => {
               );
             })[0]
           )
-          .setDuration((currentAnimation.singleLoopDuration || 1000) / 1000)
+          .setDuration(
+            (action.animations[runtimeInfo.animationIndex].singleLoopDuration ||
+              1000) / 1000
+          )
           .play();
         // runtimeInfo.mixer = mixer;
       }
@@ -131,7 +137,10 @@ export const CalculateTransformation = (timeDelta, model) => {
             );
           })[0]
         )
-        .setDuration((currentAnimation.singleLoopDuration || 1000) / 1000)
+        .setDuration(
+          (action.animations[runtimeInfo.animationIndex].singleLoopDuration ||
+            1000) / 1000
+        )
 
         .play();
       // runtimeInfo.mixer = mixer;
@@ -153,7 +162,10 @@ export const CalculateTransformation = (timeDelta, model) => {
             );
           })[0]
         )
-        .setDuration((currentAnimation.singleLoopDuration || 1000) / 1000)
+        .setDuration(
+          (action.animations[runtimeInfo.animationIndex].singleLoopDuration ||
+            1000) / 1000
+        )
 
         .play();
       // runtimeInfo.mixer = mixer;

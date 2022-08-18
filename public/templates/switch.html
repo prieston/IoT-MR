@@ -52,20 +52,41 @@
     <div id="descriptionContainer" class="description-container"></div>
     <script type="text/javascript">
       lighton.onclick = () => {
-        console.log("light on");
-        const {hueBridgeIP, username, lightID} = window.parent;
-        fetch(`http://${hueBridgeIP}/api/${username}/lights/${lightID}`,{
-          method::"PUT",
-          body:{on:true,hue:27000,sat:150,bri:150}
-        }).then(data=>console.log("ON"))
+        const { hueBridgeIP, username, lightID } = window.parent;
+
+        const x = window.setInterval(() => {
+          console.log(
+            window.iotmr.world[window.iotmr.currentWorldId][0].runtimeInfo
+              .animationIndex == 2
+          );
+          if (
+            window.iotmr.world[window.iotmr.currentWorldId][0].runtimeInfo
+              .animationIndex == 2
+          ) {
+            window.clearInterval(x);
+            fetch(`http://localhost:3000/light-on`, {
+              method: "GET",
+            }).then((data) => console.log("ON"));
+          }
+        }, 500);
       };
       lightoff.onclick = () => {
-        console.log("light off");
-        const {hueBridgeIP, username, lightID} = window.parent;
-        fetch(`http://${hueBridgeIP}/api/${username}/lights/${lightID}`,{
-          method::"PUT",
-          body:{on:false,hue:27000,sat:150,bri:150}
-        }).then(data=>console.log("OFF"))
+        const { hueBridgeIP, username, lightID } = window.parent;
+        const x = window.setInterval(() => {
+          console.log(
+            window.iotmr.world[window.iotmr.currentWorldId][0].runtimeInfo
+              .animationIndex == 2
+          );
+          if (
+            window.iotmr.world[window.iotmr.currentWorldId][0].runtimeInfo
+              .animationIndex == 2
+          ) {
+            window.clearInterval(x);
+            fetch(`http://localhost:3000/light-off`, {
+              method: "GET",
+            }).then((data) => console.log("OFF"));
+          }
+        }, 500);
       };
     </script>
   </body>

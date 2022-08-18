@@ -6,6 +6,8 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
+// import { username, hueBridgeIP, lightID } from "./config";
+
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 
@@ -15,6 +17,10 @@ import reducer from "./reducers";
 // const treelocationConvert = fromLonLat([40.62626, 22.947929, 15.25]);
 // const userConvert = fromLonLat([40.626288, 22.947957, 15.25]);
 //
+
+// window.username = username;
+// window.hueBridgeIP = hueBridgeIP;
+// window.lightID = lightID;
 const rootElement = document.getElementById("root");
 
 const loggerMiddleware = createLogger({

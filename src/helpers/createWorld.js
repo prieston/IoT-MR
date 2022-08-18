@@ -294,6 +294,7 @@ export default function createWorld(
       const intersects = raycaster.intersectObjects(scene.children, true);
       let obj;
       for (const record of intersects) {
+        // for (let i = 1; i < intersects.length; i++) {
         obj = getParentElement(record?.object);
         if (obj) {
           //check if obj is selectable
