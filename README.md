@@ -21,32 +21,40 @@ In order to use and run this project you can fork it, and change the variables
 - lightID
   at the src/config.js file
 
+in order to get the parameters you can use the documentation of phillips hue https://developers.meethue.com/.
+
 # Demo
 
 https://prieston.github.io/IoT-MR/
 
-# Presentation
+# Steps for running locally
 
 ## Step 1
 
-Go to https://prieston.github.io/IoT-MR/
+Clone the repository with the following command
+
+`git clone git@github.com:prieston/IoT-MR.git`
 
 ## Step 2
 
-Click on the Test World card
+Navigate in the project folder and install all dependencies with:
+`npm i`
 
 ## Step 3
 
-Click on the plus icon and then click the MR Icon
+Run the server and the client app in different terminals:
+
+`npm run server`
+`npm start`
 
 ## Step 4
 
-Click on the plus icon and then click the QRScan Icon, type 1 and then submit
+The client app will be available at `http://localhost:3000/IoT-MR
 
 ## Step 5
 
-Select the virtual switch
+Click on the world card and select either "lights on" or "lights off" command
 
 ## Step 6
 
-Select either "lights on" or "lights off"
+The battler will close or open the lights for you the next time he approach the light switch area.
