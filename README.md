@@ -58,3 +58,7 @@ Click on the world card and select either "lights on" or "lights off" command
 ## Step 6
 
 The battler will close or open the lights for you the next time he approach the light switch area.
+
+# Youtube video
+
+![Screenshot](https://prieston.github.io/IoT-MR/screenshot.png)

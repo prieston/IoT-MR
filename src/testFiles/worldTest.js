@@ -1,6 +1,6 @@
 export default {
   id: "006cb9aE-S32A",
-  name: "Test World",
+  name: "World IoT",
   description: "",
   actions: [
     {
@@ -141,7 +141,6 @@ export default {
       { firstName: "Konstantinos", lastName: "Evanggelidis" },
       { firstName: "Georgios", lastName: "Evanggelidis" },
       { firstName: "Theodoros", lastName: "Kaskalis" },
-      { firstName: "Theofilos", lastName: "Papadopoulos" },
     ],
     thumbnail: `${process.env.PUBLIC_URL}/worldThree-Thumbnail.png`,
     coordinates: [0, 0, 0],
