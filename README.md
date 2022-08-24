@@ -61,4 +61,5 @@ The battler will close or open the lights for you the next time he approach the 
 
 # Youtube video
 
-![Screenshot](https://prieston.github.io/IoT-MR/screenshot.png)
+You can watch a demonstration video in the following link:
+https://www.youtube.com/watch?v=4Js28lC9SN0&t=1s&ab_channel=PriestonTheo
